@@ -8,4 +8,3 @@ public sealed class Order
     public string DeliveryType { get; set; }
     public string DeliveryAddress{ get; set; }
 }
-

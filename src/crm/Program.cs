@@ -103,6 +103,14 @@ void CreateOrder()
     string deliveryType = Console.ReadLine();
     string deliveryAddress = Console.ReadLine();
 
+    if(!ValidateOrder(
+        orderDescription,
+        priceInputStr,
+        date,
+        deliveryType,
+        deliveryAddress
+    )) return;
+
     float price = float.Parse(priceInputStr);
 
     Order newOrder = orderService.CreateOrder(
@@ -119,6 +127,46 @@ void CreateOrder()
     Console.WriteLine("Order date: {0} ", date );
     Console.WriteLine("Order delivery type: {0} ", deliveryType );
     Console.WriteLine("Order delivery address: {0} ", deliveryAddress );
+
+}
+
+bool ValidateOrder(
+    string orderDescription,
+    string priceInputStr,
+    string date,
+    string deliveryType,
+    string deliveryAddress
+    )
+{
+    List<string> errors = new();
+
+    if (orderDescription is { Length: 0 })
+        errors.Add("Order description is required!");
+
+    if (priceInputStr is { Length: 0 })
+        errors.Add("Price is required!");
+    
+    if (date is { Length: 0 })
+        errors.Add("Date is required!");
+    
+    if (deliveryType is { Length: 0 })
+        errors.Add("Delivery type is required!");
+    
+    if (deliveryAddress is { Length: 0 })
+        errors.Add("Delivery address is required!");
+
+    if (errors is {Count : > 0})
+    {
+        foreach( string errorMessage in errors)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(errorMessage);
+        }
+        Console.ForegroundColor = ConsoleColor.White;
+        return false;
+
+    }
+    return true;
 
 }
 

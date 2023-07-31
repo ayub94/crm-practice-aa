@@ -14,7 +14,6 @@ public sealed class ClientService
         Gender gender
     )
     {
-        // TODO: Validate input parameters.
         return new()
         {
             FirstName = firstName,
