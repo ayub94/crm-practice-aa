@@ -2,7 +2,16 @@
 using Crm.Services;
 
 ClientService clientService = new();
-CreateClient();
+OrderService orderService = new();
+
+Console.WriteLine("Create client command: 0 ");
+Console.WriteLine("Create  order command: 1 ");
+
+int chooseCommand = int.Parse(Console.ReadLine());
+if(chooseCommand == 0)
+    CreateClient();
+else if(chooseCommand == 1)
+    CreateOrder();
 
 void CreateClient()
 {
@@ -25,14 +34,14 @@ void CreateClient()
     Gender gender = (Gender)int.Parse(genderInputStr);
     short age = short.Parse(ageInputStr);
 
-    Client newClient = clientService.CreateClient(
-        firstName,
-        lastName,
-        middleName,
-        age,
-        passportNumber,
-        gender
-    );
+    Client newClient = clientService.CreateClient(new ClientInfo(){
+        FirstName = firstName,
+        LastName =lastName,
+        MiddleName = middleName,
+        Age = age,
+        PassportNumber =passportNumber,
+        Gender = gender
+    });
     Console.WriteLine(newClient);
 
     Console.WriteLine("Client Name: {0}",
@@ -92,8 +101,7 @@ bool ValidateClient(
     return true;
 }
 
-OrderService orderService = new();
-CreateOrder();
+
 
 void CreateOrder()
 {
@@ -113,13 +121,13 @@ void CreateOrder()
 
     float price = float.Parse(priceInputStr);
 
-    Order newOrder = orderService.CreateOrder(
-        orderDescription,
-        price,
-        date,
-        deliveryType,
-        deliveryAddress
-    );
+    Order newOrder = orderService.CreateOrder(new OrderInfo(){
+        OrderDescription = orderDescription,
+        Price = price,
+        Date = date,
+        DeliveryType = deliveryType,
+        DeliveryAddress =deliveryAddress
+    });
     Console.WriteLine(newOrder);
 
     Console.WriteLine("Order description: {0} ", orderDescription );
@@ -170,4 +178,10 @@ bool ValidateOrder(
 
 }
 
+//OrderInfo orderr = new OrderInfo("iPhone 15pro Max 256Gb Deep Purple", 1425, "25-September", "express delivery", "68 Somonion str., app.18, Vahdat, 735400, Tajikistan");
+//Console.WriteLine($"  {orderr.OrderDescription}, {orderr.Price} $, {orderr.Date},  {orderr.DeliveryType}, {orderr.DeliveryAddress}");
+
+//ClientInfo client = new ClientInfo("Ayubjon", "Narzulloev", "Qudratulloevich", 29, "700400300", 0);
+//Console.WriteLine($"  {client.FirstName}, {client.LastName}, {client.MiddleName}, {client.Age}, {client.PassportNumber}, {client.Gender}");
+ 
 
