@@ -14,22 +14,20 @@ else if(chooseCommand == 1)
     CreateOrder();
 
 void CreateClient()
-{
+{   Console.WriteLine("First Name: ");
     string firstName = Console.ReadLine();
+    Console.WriteLine("Family Name: ");
     string lastName = Console.ReadLine();
+    Console.WriteLine("Middle Name: ");
     string middleName = Console.ReadLine();
+    Console.WriteLine("Age: ");
     string ageInputStr = Console.ReadLine();
+    Console.WriteLine("Passport Number");
     string passportNumber = Console.ReadLine();
+    Console.WriteLine("Gender ommands: 0-Male ,  1-Female ");
+    Console.WriteLine("Gender: ");
     string genderInputStr = Console.ReadLine();
     
-    if(!ValidateClient(
-        firstName,
-        lastName,
-        middleName,
-        ageInputStr,
-        passportNumber,
-        genderInputStr
-    )) return;
 
     Gender gender = (Gender)int.Parse(genderInputStr);
     short age = short.Parse(ageInputStr);
@@ -52,72 +50,20 @@ void CreateClient()
     Console.WriteLine("Client Gender: {0}", newClient.Gender);
 }
 
-bool ValidateClient(
-    string firstName,
-    string lastName,
-    string middleName,
-    string ageStr,
-    string passportNumber,
-    string genderStr)
-{
-    List<string> errors = new();
-
-    if (firstName is { Length: 0 })
-        errors.Add("First Name field is required!");
-
-    if (lastName is { Length: 0 })
-        errors.Add("Last Name field is required!");
-
-    if (middleName is { Length: 0 })
-        errors.Add("Middle Name field is required!");
-
-    bool isAgeCorrect = short.TryParse(ageStr, out short age);
-    if (!isAgeCorrect)
-        errors.Add("Please input correct value for age field!");
-
-    if (passportNumber is { Length: 0 })
-        errors.Add("Passport Number field is required!");
-
-    bool isGenderCorrect = int.TryParse(genderStr, out int genderIndex);
-    if (!isGenderCorrect)
-        errors.Add("Please input correct value for gender field!");
-    
-    bool isEnumGenderCorrect = genderIndex.TryParse(out Gender gender);
-    if (!isEnumGenderCorrect)
-        errors.Add("Please input correct value for gender field (0 - Male, 1 - Female)!");
-
-    if (errors is { Count: > 0 })
-    {
-        foreach(string errorMessage in errors)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(errorMessage);
-        }
-
-        Console.ForegroundColor = ConsoleColor.White;
-        return false;
-    }
-
-    return true;
-}
-
-
-
 void CreateOrder()
 {
+    Console.WriteLine("Ordering item: ");
     string orderDescription = Console.ReadLine();
+    Console.WriteLine("Price: ");
     string priceInputStr = Console.ReadLine();
+    Console.WriteLine("Date of order: ");
     string date = Console.ReadLine();
-    string deliveryType = Console.ReadLine();
-    string deliveryAddress = Console.ReadLine();
 
-    if(!ValidateOrder(
-        orderDescription,
-        priceInputStr,
-        date,
-        deliveryType,
-        deliveryAddress
-    )) return;
+    
+    Console.WriteLine("Please choose  delivery type: ");
+    string deliveryType = Console.ReadLine();
+    Console.WriteLine("Please provide dellivery address: ");
+    string deliveryAddress = Console.ReadLine();
 
     float price = float.Parse(priceInputStr);
 
@@ -137,51 +83,4 @@ void CreateOrder()
     Console.WriteLine("Order delivery address: {0} ", deliveryAddress );
 
 }
-
-bool ValidateOrder(
-    string orderDescription,
-    string priceInputStr,
-    string date,
-    string deliveryType,
-    string deliveryAddress
-    )
-{
-    List<string> errors = new();
-
-    if (orderDescription is { Length: 0 })
-        errors.Add("Order description is required!");
-
-    if (priceInputStr is { Length: 0 })
-        errors.Add("Price is required!");
-    
-    if (date is { Length: 0 })
-        errors.Add("Date is required!");
-    
-    if (deliveryType is { Length: 0 })
-        errors.Add("Delivery type is required!");
-    
-    if (deliveryAddress is { Length: 0 })
-        errors.Add("Delivery address is required!");
-
-    if (errors is {Count : > 0})
-    {
-        foreach( string errorMessage in errors)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(errorMessage);
-        }
-        Console.ForegroundColor = ConsoleColor.White;
-        return false;
-
-    }
-    return true;
-
-}
-
-//OrderInfo orderr = new OrderInfo("iPhone 15pro Max 256Gb Deep Purple", 1425, "25-September", "express delivery", "68 Somonion str., app.18, Vahdat, 735400, Tajikistan");
-//Console.WriteLine($"  {orderr.OrderDescription}, {orderr.Price} $, {orderr.Date},  {orderr.DeliveryType}, {orderr.DeliveryAddress}");
-
-//ClientInfo client = new ClientInfo("Ayubjon", "Narzulloev", "Qudratulloevich", 29, "700400300", 0);
-//Console.WriteLine($"  {client.FirstName}, {client.LastName}, {client.MiddleName}, {client.Age}, {client.PassportNumber}, {client.Gender}");
- 
 
