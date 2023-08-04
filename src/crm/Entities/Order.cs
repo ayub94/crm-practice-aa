@@ -1,11 +1,10 @@
 namespace Crm.Entities;
 public sealed class Order
 {
-    public long Id { get; set; }
-    public string OrderDescription { get; set; }
-    public float Price { get; set; }
-    public string Date { get; set; }
-    public string DeliveryType { get; set; }
-    public string DeliveryAddress{ get; set; }
+    public long Id { get; init; }
+    public required string OrderDescription {get; init; }
+    public float Price { get; init; }
+    public required string Date { get; init; }
+    public required string DeliveryType { get; init; }
+    public required string DeliveryAddress{ get; init; }
 }
-

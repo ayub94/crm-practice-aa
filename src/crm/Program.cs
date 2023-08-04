@@ -2,37 +2,44 @@
 using Crm.Services;
 
 ClientService clientService = new();
-CreateClient();
+OrderService orderService = new();
+
+Console.WriteLine("Create client command: 0 ");
+Console.WriteLine("Create  order command: 1 ");
+
+int chooseCommand = int.Parse(Console.ReadLine());
+if(chooseCommand == 0)
+    CreateClient();
+else if(chooseCommand == 1)
+    CreateOrder();
 
 void CreateClient()
-{
+{   Console.WriteLine("First Name: ");
     string firstName = Console.ReadLine();
+    Console.WriteLine("Family Name: ");
     string lastName = Console.ReadLine();
+    Console.WriteLine("Middle Name: ");
     string middleName = Console.ReadLine();
+    Console.WriteLine("Age: ");
     string ageInputStr = Console.ReadLine();
+    Console.WriteLine("Passport Number");
     string passportNumber = Console.ReadLine();
+    Console.WriteLine("Gender ommands: 0-Male ,  1-Female ");
+    Console.WriteLine("Gender: ");
     string genderInputStr = Console.ReadLine();
     
-    if(!ValidateClient(
-        firstName,
-        lastName,
-        middleName,
-        ageInputStr,
-        passportNumber,
-        genderInputStr
-    )) return;
 
     Gender gender = (Gender)int.Parse(genderInputStr);
     short age = short.Parse(ageInputStr);
 
-    Client newClient = clientService.CreateClient(
-        firstName,
-        lastName,
-        middleName,
-        age,
-        passportNumber,
-        gender
-    );
+    Client newClient = clientService.CreateClient(new ClientInfo(){
+        FirstName = firstName,
+        LastName =lastName,
+        MiddleName = middleName,
+        Age = age,
+        PassportNumber =passportNumber,
+        Gender = gender
+    });
     Console.WriteLine(newClient);
 
     Console.WriteLine("Client Name: {0}",
@@ -43,75 +50,30 @@ void CreateClient()
     Console.WriteLine("Client Gender: {0}", newClient.Gender);
 }
 
-bool ValidateClient(
-    string firstName,
-    string lastName,
-    string middleName,
-    string ageStr,
-    string passportNumber,
-    string genderStr)
-{
-    List<string> errors = new();
-
-    if (firstName is { Length: 0 })
-        errors.Add("First Name field is required!");
-
-    if (lastName is { Length: 0 })
-        errors.Add("Last Name field is required!");
-
-    if (middleName is { Length: 0 })
-        errors.Add("Middle Name field is required!");
-
-    bool isAgeCorrect = short.TryParse(ageStr, out short age);
-    if (!isAgeCorrect)
-        errors.Add("Please input correct value for age field!");
-
-    if (passportNumber is { Length: 0 })
-        errors.Add("Passport Number field is required!");
-
-    bool isGenderCorrect = int.TryParse(genderStr, out int genderIndex);
-    if (!isGenderCorrect)
-        errors.Add("Please input correct value for gender field!");
-    
-    bool isEnumGenderCorrect = genderIndex.TryParse(out Gender gender);
-    if (!isEnumGenderCorrect)
-        errors.Add("Please input correct value for gender field (0 - Male, 1 - Female)!");
-
-    if (errors is { Count: > 0 })
-    {
-        foreach(string errorMessage in errors)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(errorMessage);
-        }
-
-        Console.ForegroundColor = ConsoleColor.White;
-        return false;
-    }
-
-    return true;
-}
-
-OrderService orderService = new();
-CreateOrder();
-
 void CreateOrder()
 {
+    Console.WriteLine("Ordering item: ");
     string orderDescription = Console.ReadLine();
+    Console.WriteLine("Price: ");
     string priceInputStr = Console.ReadLine();
+    Console.WriteLine("Date of order: ");
     string date = Console.ReadLine();
+
+    
+    Console.WriteLine("Please choose  delivery type: ");
     string deliveryType = Console.ReadLine();
+    Console.WriteLine("Please provide dellivery address: ");
     string deliveryAddress = Console.ReadLine();
 
     float price = float.Parse(priceInputStr);
 
-    Order newOrder = orderService.CreateOrder(
-        orderDescription,
-        price,
-        date,
-        deliveryType,
-        deliveryAddress
-    );
+    Order newOrder = orderService.CreateOrder(new OrderInfo(){
+        OrderDescription = orderDescription,
+        Price = price,
+        Date = date,
+        DeliveryType = deliveryType,
+        DeliveryAddress =deliveryAddress
+    });
     Console.WriteLine(newOrder);
 
     Console.WriteLine("Order description: {0} ", orderDescription );
@@ -121,5 +83,4 @@ void CreateOrder()
     Console.WriteLine("Order delivery address: {0} ", deliveryAddress );
 
 }
-
 
