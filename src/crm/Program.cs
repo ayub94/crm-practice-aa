@@ -27,10 +27,17 @@ void CreateClient()
     Console.WriteLine("Gender ommands: 0-Male ,  1-Female ");
     Console.WriteLine("Gender: ");
     string genderInputStr = Console.ReadLine();
+    Console.WriteLine("Phone Number: ");
+    string phoneInpStr = Console.ReadLine();
+    Console.WriteLine("E-mail address: ");
+    string email = Console.ReadLine();
+    Console.WriteLine("Password: ");
+    string password = Console.ReadLine();
     
 
     Gender gender = (Gender)int.Parse(genderInputStr);
     short age = short.Parse(ageInputStr);
+    long phone = long.Parse(phoneInpStr);
 
     Client newClient = clientService.CreateClient(new ClientInfo(){
         FirstName = firstName,
@@ -38,7 +45,10 @@ void CreateClient()
         MiddleName = middleName,
         Age = age,
         PassportNumber =passportNumber,
-        Gender = gender
+        Gender = gender,
+        Phone = phone,
+        Email = email, 
+        Password = password
     });
     Console.WriteLine(newClient);
 
@@ -48,7 +58,11 @@ void CreateClient()
     Console.WriteLine("Client Age: {0}", newClient.Age);
     Console.WriteLine("Client Passport Number: {0}", newClient.PassportNumber);
     Console.WriteLine("Client Gender: {0}", newClient.Gender);
+    Console.WriteLine("Client Phone Number: {0}", newClient.Phone);
+    Console.WriteLine("Client E-mail address: {0}", newClient.Email);
+    Console.WriteLine("Client Password: {0}", newClient.Password);
 }
+
 
 void CreateOrder()
 {
