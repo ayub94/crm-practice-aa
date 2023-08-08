@@ -48,7 +48,7 @@ public readonly struct ClientInfo
     public required Gender Gender 
     { 
         get => _gender; 
-        init => _gender = value ==0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+        init => _gender = value ;
     }
     public required long Phone 
     { 
