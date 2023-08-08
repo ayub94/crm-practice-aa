@@ -10,12 +10,15 @@ public readonly struct ClientInfo
     private readonly short _age;
     private readonly string _passportNumber;
     private readonly Gender _gender;
+    private readonly long _phone;
+    private readonly string _email;
+    private readonly string _password;
 
 
     public long  Id 
     {   
         get => _id; 
-        init => _id = value <= 0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+        init => _id = value > 0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
     }
     public required string  FirstName 
     { 
@@ -35,7 +38,7 @@ public readonly struct ClientInfo
     public short Age
     {
         get => _age; 
-        init => _age =value <=0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+        init => _age =value > 0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
     }
     public required string PassportNumber 
     { 
@@ -45,7 +48,22 @@ public readonly struct ClientInfo
     public required Gender Gender 
     { 
         get => _gender; 
-        init => _gender = value ==0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+        init => _gender = value ;
+    }
+    public required long Phone 
+    { 
+        get => _phone; 
+        init => _phone = value > 0 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+    }
+    public required string Email 
+    { 
+        get => _email ?? string.Empty; 
+        init => _email =value is {Length: > 0} ? value : throw new ArgumentOutOfRangeException(nameof(value)); 
+    }
+    public required string Password 
+    { 
+        get => _password ?? string.Empty; 
+        init => _password  =value is {Length: > 0} ? value : throw new ArgumentOutOfRangeException(nameof(value)); 
     }
 
     public ClientInfo(
@@ -54,7 +72,10 @@ public readonly struct ClientInfo
         string middleName,
         short  age,
         string passportNumber,
-        Gender gender
+        Gender gender,
+        long  phone,
+        string email,
+        string password
     )
     {
         FirstName = firstName;
@@ -63,5 +84,8 @@ public readonly struct ClientInfo
         Age = age;
         PassportNumber = passportNumber;
         Gender = gender;
+        Phone = phone;
+        Email = email;
+        Password = password;
     }
 }
