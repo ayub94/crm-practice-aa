@@ -26,5 +26,19 @@ public sealed class ClientService
 
         return client;
     }   
+    public Client? GetClient(string firstName, string  lastName)
+    {
+        if(firstName is not {Length: >0})
+            throw new ArgumentNullException(nameof(lastName));
+        if(lastName is not {Length: >0})
+            throw new ArgumentNullException(nameof(lastName));
 
+        foreach (Client client in clients)
+        {
+            if(client.FirstName.Equals(firstName) && client.LastName.Equals(lastName))
+                return client;
+        }
+        return null;
+    }
+ 
 } 
