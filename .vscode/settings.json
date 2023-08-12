@@ -1,0 +1,7 @@
+{
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.loggingLevel": "error",
+    "files.exclude": {
+        "": true
+    }
+}
