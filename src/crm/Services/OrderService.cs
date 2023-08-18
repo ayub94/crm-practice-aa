@@ -1,11 +1,17 @@
 using Crm.Entities;
-
 namespace Crm.Services;
 
-public sealed class OrderService
+abstract class OrderServices
 {
     public List<Order> orders = new List<Order>();
-    public Order CreateOrder(OrderInfo orderInfo)
+    public abstract Order CreateOrder(OrderInfo orderInfo);   
+    public abstract Order? GetOrder(string orderDescription);
+    public abstract Order GetOrderById(string orderId);
+}
+
+class OrderService : OrderServices
+{
+    public override Order CreateOrder(OrderInfo orderInfo)
     {
          Order order = new()
         {
@@ -19,10 +25,8 @@ public sealed class OrderService
         orders.Add(order);
         
         return order;
-
-    }
-
-    public Order GetOrder(string orderDescription)
+    }  
+    public override Order? GetOrder(string orderDescription)
     {
         if(orderDescription is not {Length: >0}) 
             throw new ArgumentOutOfRangeException(nameof(orderDescription));
@@ -34,8 +38,7 @@ public sealed class OrderService
         }
         return null;
     }
-
-    public Order GetOrderById(string orderId)
+     public override Order GetOrderById(string orderId)
     {
         if(orderId is not {Length: >0}) 
             throw new ArgumentOutOfRangeException(nameof(orderId));
@@ -47,7 +50,5 @@ public sealed class OrderService
         }
         return null;
     }
-    
 }
-
 

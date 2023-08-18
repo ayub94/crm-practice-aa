@@ -1,14 +1,17 @@
 using Crm.Entities;
-
 namespace Crm.Services;
 
-public sealed class ClientService
+abstract class ClientServices
 {
-    public List<Client> clients = new List<Client>();
-    public Client CreateClient(ClientInfo clientInfo)
+    public List<Client> clients = new();
+    public abstract Client CreateClient(ClientInfo clientInfo);
+    public abstract Client? GetClient(string firstName, string  lastName);
+} 
+ class ClientService : ClientServices
+{
+    public override Client CreateClient(ClientInfo clientInfo)
     {
-       
-        Client client = new()
+         Client client = new()
         {
             FirstName = clientInfo.FirstName,
             LastName = clientInfo.LastName,
@@ -19,16 +22,15 @@ public sealed class ClientService
             Phone = clientInfo.Phone,
             Email = clientInfo.Email,
             Password = clientInfo.Password
-
         };
 
         clients.Add (client) ;
 
         return client;
-    }   
-    public Client? GetClient(string firstName, string  lastName)
-    {
-        if(firstName is not {Length: >0})
+    }
+     public override Client? GetClient(string firstName, string  lastName)
+    { 
+         if(firstName is not {Length: >0})
             throw new ArgumentNullException(nameof(lastName));
         if(lastName is not {Length: >0})
             throw new ArgumentNullException(nameof(lastName));
@@ -40,5 +42,4 @@ public sealed class ClientService
         }
         return null;
     }
- 
-} 
+}
