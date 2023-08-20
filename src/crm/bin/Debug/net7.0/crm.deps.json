@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v7.0": {
       "crm/1.0.0": {
+        "dependencies": {
+          "Crm.DataAccess": "1.0.0"
+        },
         "runtime": {
           "crm.dll": {}
+        }
+      },
+      "Crm.DataAccess/1.0.0": {
+        "runtime": {
+          "Crm.DataAccess.dll": {}
         }
       }
     }
   },
   "libraries": {
     "crm/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Crm.DataAccess/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

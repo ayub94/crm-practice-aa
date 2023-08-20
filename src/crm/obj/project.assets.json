@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {}
+    "net7.0": {
+      "Crm.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/Crm.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Crm.DataAccess.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Crm.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../Crm.DataAccess/Crm.DataAccess.csproj",
+      "msbuildProject": "../Crm.DataAccess/Crm.DataAccess.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net7.0": []
+    "net7.0": [
+      "Crm.DataAccess >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\khoja\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\C# Course Alif Academy\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj": {
+              "projectPath": "D:\\C# Course Alif Academy\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
