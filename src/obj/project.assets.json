@@ -1,30 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
-      "Crm.DataAccess/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "compile": {
-          "bin/placeholder/Crm.DataAccess.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Crm.DataAccess.dll": {}
-        }
-      }
-    }
+    "net7.0": {}
   },
-  "libraries": {
-    "Crm.DataAccess/1.0.0": {
-      "type": "project",
-      "path": "../Crm.DataAccess/Crm.DataAccess.csproj",
-      "msbuildProject": "../Crm.DataAccess/Crm.DataAccess.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    "net7.0": [
-      "Crm.DataAccess >= 1.0.0"
-    ]
+    "net7.0": []
   },
   "packageFolders": {
     "C:\\Users\\khoja\\.nuget\\packages\\": {}
@@ -32,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C# Course Alif Academy\\crm-practice\\src\\crm\\crm.csproj",
-      "projectName": "crm",
-      "projectPath": "D:\\C# Course Alif Academy\\crm-practice\\src\\crm\\crm.csproj",
+      "projectUniqueName": "D:\\C# Course Alif Academy\\crm-practice\\src\\src.csproj",
+      "projectName": "src",
+      "projectPath": "D:\\C# Course Alif Academy\\crm-practice\\src\\src.csproj",
       "packagesPath": "C:\\Users\\khoja\\.nuget\\packages\\",
-      "outputPath": "D:\\C# Course Alif Academy\\crm-practice\\src\\crm\\obj\\",
+      "outputPath": "D:\\C# Course Alif Academy\\crm-practice\\src\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\khoja\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -52,11 +33,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "D:\\C# Course Alif Academy\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj": {
-              "projectPath": "D:\\C# Course Alif Academy\\crm-practice\\src\\Crm.DataAccess\\Crm.DataAccess.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

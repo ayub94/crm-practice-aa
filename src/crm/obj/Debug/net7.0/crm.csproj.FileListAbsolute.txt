@@ -13,3 +13,6 @@ D:\C# Course Alif Academy\crm-practice\src\crm\obj\Debug\net7.0\refint\crm.dll
 D:\C# Course Alif Academy\crm-practice\src\crm\obj\Debug\net7.0\crm.pdb
 D:\C# Course Alif Academy\crm-practice\src\crm\obj\Debug\net7.0\crm.genruntimeconfig.cache
 D:\C# Course Alif Academy\crm-practice\src\crm\obj\Debug\net7.0\ref\crm.dll
+D:\C# Course Alif Academy\crm-practice\src\crm\bin\Debug\net7.0\Crm.DataAccess.dll
+D:\C# Course Alif Academy\crm-practice\src\crm\bin\Debug\net7.0\Crm.DataAccess.pdb
+D:\C# Course Alif Academy\crm-practice\src\crm\obj\Debug\net7.0\crm.csproj.CopyComplete
