@@ -5,10 +5,10 @@ abstract class OrderServices
 {
     public List<Order> orders = new List<Order>();
     public abstract Order? CreateOrder(OrderInfo orderInfo);   
-    public abstract Order? GetOrder(string orderDescription);
+    public abstract Order? GetOrder(string description);
     public abstract Order? GetOrderById(string orderId);
-    public abstract Order? EditOrderDescription(string orderDescription, string newOrderDescription);
-    public abstract Order? DeleteOrder(string orderDescription);
+    public abstract Order? EditDescription(string description, string newDescription);
+    public abstract Order? DeleteOrder(string description);
 }
 
 class OrderService : OrderServices
@@ -17,7 +17,7 @@ class OrderService : OrderServices
     {
          Order order = new()
         {
-            OrderDescription =orderInfo.OrderDescription,
+            Description =orderInfo.Description,
             Price = orderInfo.Price,
             Date = orderInfo.Date,
             DeliveryType = orderInfo.DeliveryType,
@@ -28,14 +28,14 @@ class OrderService : OrderServices
         
         return order;
     }  
-    public override Order? GetOrder(string orderDescription)
+    public override Order? GetOrder(string description)
     {
-        if(orderDescription is not {Length: >0}) 
-            throw new ArgumentOutOfRangeException(nameof(orderDescription));
+        if(description is not {Length: >0}) 
+            throw new ArgumentOutOfRangeException(nameof(description));
 
         foreach(Order order in orders )
         {
-            if(orderDescription.Equals(order.OrderDescription))
+            if(description.Equals(order.Description))
               return order;
         }
         return null;
@@ -52,16 +52,16 @@ class OrderService : OrderServices
         }
         return null;
     }
-    public override Order? EditOrderDescription(string orderDescription, string newOrderDescription)
+    public override Order? EditDescription(string description, string newDescription)
     {
-        if(orderDescription is not {Length: >0}) 
-            throw new ArgumentOutOfRangeException(nameof(orderDescription));
+        if(description is not {Length: >0}) 
+            throw new ArgumentOutOfRangeException(nameof(description));
 
         foreach(Order order in orders )
         {
-            if(orderDescription.Equals(order.OrderDescription))
+            if(description.Equals(order.Description))
             {
-                order.OrderDescription = newOrderDescription;
+                order.Description = newDescription;
                  return order;
 
             }
@@ -69,14 +69,14 @@ class OrderService : OrderServices
         }
         return null;
     }
-    public override Order? DeleteOrder(string orderDescription)
+    public override Order? DeleteOrder(string description)
     {
-         if(orderDescription is not {Length: >0}) 
-            throw new ArgumentOutOfRangeException(nameof(orderDescription));
+         if(description is not {Length: >0}) 
+            throw new ArgumentOutOfRangeException(nameof(description));
 
         foreach(Order order in orders )
         {
-            if(orderDescription.Equals(order.OrderDescription))
+            if(description.Equals(order.Description))
             {
                 orders.Remove(order);
                 return order;

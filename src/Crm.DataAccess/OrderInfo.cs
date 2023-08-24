@@ -3,7 +3,7 @@ namespace Crm.DataAccess;
 public readonly struct OrderInfo
  {
      private readonly long _id;
-     private readonly string _orderDescription;
+     private readonly string _description;
      private readonly float _price;
      private readonly string _date;
      private readonly string _deliveryType;
@@ -14,10 +14,10 @@ public readonly struct OrderInfo
           get => _id;  
           init => _id = value < 0 ? value : throw new ArgumentNullException(nameof(value)); 
      }
-    public readonly string OrderDescription 
+    public readonly string Description 
     {
-          get => _orderDescription ?? string.Empty ;  
-          init => _orderDescription = value is  {Length: >0} ? value : throw new ArgumentNullException(nameof(value));
+          get => _description ?? string.Empty ;  
+          init => _description = value is  {Length: >0} ? value : throw new ArgumentNullException(nameof(value));
      }
     public readonly float Price
     {
@@ -41,14 +41,14 @@ public readonly struct OrderInfo
      }
 
     public OrderInfo (
-         string orderDescription,
+         string description,
          float price,
          string date,
          string deliveryType,
          string deliveryAddress
     )
    {
-        OrderDescription = orderDescription;
+        Description = description;
         Price = price;
         Date = date;
         DeliveryType =deliveryType;
