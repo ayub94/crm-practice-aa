@@ -1,5 +1,5 @@
 
-namespace Crm.Entities;
+namespace Crm.DataAccess;
 
 public readonly struct ClientInfo
 {

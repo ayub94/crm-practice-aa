@@ -1,11 +1,19 @@
-using Crm.Entities;
-
+using Crm.DataAccess;
 namespace Crm.Services;
 
-public sealed class OrderService
+abstract class OrderServices
 {
     public List<Order> orders = new List<Order>();
-    public Order CreateOrder(OrderInfo orderInfo)
+    public abstract Order? CreateOrder(OrderInfo orderInfo);   
+    public abstract Order? GetOrder(string orderDescription);
+    public abstract Order? GetOrderById(string orderId);
+    public abstract Order? EditOrderDescription(string orderDescription, string newOrderDescription);
+    public abstract Order? DeleteOrder(string orderDescription);
+}
+
+class OrderService : OrderServices
+{
+    public override Order CreateOrder(OrderInfo orderInfo)
     {
          Order order = new()
         {
@@ -19,10 +27,8 @@ public sealed class OrderService
         orders.Add(order);
         
         return order;
-
-    }
-
-    public Order GetOrder(string orderDescription)
+    }  
+    public override Order? GetOrder(string orderDescription)
     {
         if(orderDescription is not {Length: >0}) 
             throw new ArgumentOutOfRangeException(nameof(orderDescription));
@@ -34,8 +40,7 @@ public sealed class OrderService
         }
         return null;
     }
-
-    public Order GetOrderById(string orderId)
+     public override Order? GetOrderById(string orderId)
     {
         if(orderId is not {Length: >0}) 
             throw new ArgumentOutOfRangeException(nameof(orderId));
@@ -47,7 +52,40 @@ public sealed class OrderService
         }
         return null;
     }
-    
+    public override Order? EditOrderDescription(string orderDescription, string newOrderDescription)
+    {
+        if(orderDescription is not {Length: >0}) 
+            throw new ArgumentOutOfRangeException(nameof(orderDescription));
+
+        foreach(Order order in orders )
+        {
+            if(orderDescription.Equals(order.OrderDescription))
+            {
+                order.OrderDescription = newOrderDescription;
+                 return order;
+
+            }
+             
+        }
+        return null;
+    }
+    public override Order? DeleteOrder(string orderDescription)
+    {
+         if(orderDescription is not {Length: >0}) 
+            throw new ArgumentOutOfRangeException(nameof(orderDescription));
+
+        foreach(Order order in orders )
+        {
+            if(orderDescription.Equals(order.OrderDescription))
+            {
+                orders.Remove(order);
+                return order;
+            }
+              
+        }
+        return null;
+
+    }
 }
 
 
