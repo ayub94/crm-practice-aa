@@ -67,7 +67,7 @@ void CreateClient()
 void CreateOrder()
 {
     Console.WriteLine("Ordering item: ");
-    string orderDescription = Console.ReadLine();
+    string description = Console.ReadLine();
     Console.WriteLine("Price: ");
     string priceInputStr = Console.ReadLine();
     Console.WriteLine("Date of order: ");
@@ -82,7 +82,7 @@ void CreateOrder()
     float price = float.Parse(priceInputStr);
 
     Order newOrder = orderService.CreateOrder(new OrderInfo(){
-        OrderDescription = orderDescription,
+        Description = description,
         Price = price,
         Date = date,
         DeliveryType = deliveryType,
@@ -90,7 +90,7 @@ void CreateOrder()
     });
     Console.WriteLine(newOrder);
 
-    Console.WriteLine("Order description: {0} ", orderDescription );
+    Console.WriteLine("Order description: {0} ", description );
     Console.WriteLine("Order price: {0} $ ", price);
     Console.WriteLine("Order date: {0} ", date );
     Console.WriteLine("Order delivery typee: {0} ", deliveryType );
