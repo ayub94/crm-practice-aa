@@ -1,5 +1,7 @@
 ﻿using Crm.DataAccess;
-using Crm.Services;
+
+namespace Crm.BusinessLogic;
+
 
 ClientService clientService = new();
 OrderService orderService = new();
