@@ -12,6 +12,4 @@ public interface IStatisticsService
     }
 
     public int GetOrderCount()
-
-
 }
